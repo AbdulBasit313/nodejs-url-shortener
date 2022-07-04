@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>URL Shortener</title>
+    <link rel="stylesheet" href="../styles/index.css" type="text/css">
+  </head>
+  <body>
+    <div class="container">
+    <h1 class="title">URL Shortener</h1>
+    <form action="/shortUrl" method="POST" class="app-form">
+      <input type="url" name="fullUrl" id="fullUrl" placeholder="type or paste url here..."/>
+      <button type="submit">Short it!</button>
+    </form>
+    <table>
+    <tbody>
+      <thead>
+        <tr>
+          <th>Original Url</th>
+          <th>Short Url</th>
+          <th>No. of Clicks</th>
+          <th>Date Added</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% urls.forEach(({fullUrl, shortUrl, urlCode, clicks, createdAt}) => { %>
+          <tr>
+            <td>
+              <a href="<%= fullUrl %> "><%= fullUrl %></a>
+            </td>
+            <td>
+              <a href="<%= shortUrl %>"><%= shortUrl %></a>
+            </td>
+            <td class="center"><%= clicks %></td>
+            <td class="center">
+              <%= `${createdAt.getFullYear()}-${createdAt.getMonth()+1}-${createdAt.getDate()}` %>
+            </td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </tbody>
+  </table>
+</div>
+  </body>
+</html>
